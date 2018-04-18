@@ -1,0 +1,13 @@
+body{
+    height: 100%;
+}
+.admin{
+    display: flex;
+}
+.left_menu{
+    width: 15%;
+}
+.admin_content{
+    width: 85%;
+    background-color: gainsboro;
+}

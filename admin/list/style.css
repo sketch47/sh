@@ -1,0 +1,15 @@
+.page-list_items__element{
+    width: 100%;
+}
+
+.page-list_items__element___name {
+    width: 30%;
+}
+
+.page-list_items__element___code {
+    width: 30%;
+}
+
+.tab-links{
+    border-bottom: solid 1px red;
+}

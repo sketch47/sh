@@ -1,0 +1,33 @@
+
+/*galerey style for index.php*/
+.galery{
+    display: flex;
+    flex-wrap: wrap;
+}
+.image {
+    min-height: 240px;
+    margin: 10px 10px 10px 10px;
+    border-radius: 15px;
+    width: 200px;
+}
+
+.image_picture img{
+    border-radius: 15px;
+        height: 180px;
+}
+.image_about{
+    padding-top: 10px;
+}
+.image_about button{
+    width: 50%;
+}
+.image_about__text{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.image_about__text p{
+    word-wrap: break-word;
+    margin: 0 0 0 0;
+}

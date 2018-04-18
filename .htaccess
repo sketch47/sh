@@ -1,0 +1,7 @@
+php_value max_input_vars 1000
+
+RewriteEngine On
+
+RewriteRule ^stati/detail/([A-Za-z0-9_-]+)? /detail.php?CODE=$1 [L]
+
+RewriteRule ^news/detail/([A-Za-z0-9_-]+)? /detail.php?CODE=$1 [L]

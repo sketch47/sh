@@ -1,24 +1,44 @@
 <?php
 
-    echo "<link rel='stylesheet' href='/components/stati/statilist/style.css'>";
-    $arResult = AB::QueryALL("SELECT stati.ID,stati.NAME,stati.CODE,
-                                    stati_preview.PREVIEW_PICTURE,stati_preview.NAME,stati_preview.TEXT as PREVIEW_TEXT, 
-                                    stati_core.CORE_PICTIURE,stati_core.TITLE,stati_core.TEXT as CORE_TEXT
-                                    FROM math.stati
-                                    LEFT JOIN math.stati_preview ON stati_preview.ID = stati.PREVIEW_ID
-                                    LEFT JOIN math.stati_core ON stati_core.ID = stati.CORE_ID"
-                            );
-   ?>
+
+
+
+app::addStyle('/components/stati/statilist/style.css');
+function news($category){
+
+    $x = 'stati';
+    $preview = $x."_preview";
+    $core = $x."_core";
+
+    $str = "SELECT $x.ID,$x.ACTIVATED,$x.NAME,$x.CODE,
+                                    $preview.PREVIEW_PICTURE,$preview.NAME as PREVIEW_NAME,$preview.TEXT as PREVIEW_TEXT, 
+                                    $core.CORE_PICTIURE,$core.TITLE,$core.TEXT as CORE_TEXT
+                                    FROM math.$x
+                                    LEFT JOIN stati_preview ON $preview.ID = $x.PREVIEW_ID
+                                    LEFT JOIN $core ON $core.ID = $x.CORE_ID
+                                    WHERE $x.CATEGORY = '$category'
+                                    ORDER BY SORT DESC
+                                    ";
+
+
+    $arResult = AB::QueryALL($str);
+
+    ?>
     <div class="content">
         <?foreach ($arResult as $c_element):?>
-        <div class="stati_preview">
+        <?if($c_element['ACTIVATED']==1):?>
+            <div class="stati_preview">
 
-            <img src = <?=AB::GetImgById($c_element["PREVIEW_PICTURE"])["SRC"]?>>
-            <div class="stati_preview__text">
-                <div class="stati_preview__title"><h2>  <?=$c_element["TITLE"]?>    </h2></div>
-                <?=$c_element["PREVIEW_TEXT"]?>        </div>
-            <a href="/stati/detail/<?=$c_element["CODE"]?>/"><button
-                        class="stati_preview__detail">Подробнее -></button></a>
-        </div>
+                <img src = <?=AB::GetImgById($c_element["PREVIEW_PICTURE"])["SRC"]?>>
+                <div class="stati_preview__text">
+                    <div class="stati_preview__title"><h2>  <?=htmlspecialchars_decode($c_element["PREVIEW_NAME"])?>    </h2></div>
+                    <?$s = htmlspecialchars_decode($c_element["PREVIEW_TEXT"],ENT_NOQUOTES)?>
+                    <?=$s?>        </div>
+
+                <a href="/<?=$category?>/detail/<?=htmlspecialchars_decode($c_element["CODE"])?>/"><button
+                            class="stati_preview__detail">Подробнее -></button></a>
+            </div>
+        <?endif;?>
         <?endforeach;?>
     </div>
+<?}?>

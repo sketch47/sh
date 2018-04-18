@@ -1,7 +1,6 @@
 <?php
+include ($_SERVER['DOCUMENT_ROOT'].'/components/template/header.php'); 
 
-include ($_SERVER['DOCUMENT_ROOT'].'/components/template/header.php');
-
-include_once($_SERVER['DOCUMENT_ROOT'].'/components/stati/statilist/template.php');
-
+app::title("list");
+news('stati');
 include ($_SERVER['DOCUMENT_ROOT'].'/components/template/footer.php');
