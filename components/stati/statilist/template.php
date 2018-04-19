@@ -19,10 +19,7 @@ function news($category){
                                     WHERE $x.CATEGORY = '$category'
                                     ORDER BY SORT DESC
                                     ";
-
-
     $arResult = AB::QueryALL($str);
-
     ?>
     <div class="content">
         <?foreach ($arResult as $c_element):?>
@@ -34,9 +31,10 @@ function news($category){
                     <div class="stati_preview__title"><h2>  <?=htmlspecialchars_decode($c_element["PREVIEW_NAME"])?>    </h2></div>
                     <?$s = htmlspecialchars_decode($c_element["PREVIEW_TEXT"],ENT_NOQUOTES)?>
                     <?=$s?>        </div>
-
+                <?if(app::GetCurPage()!= "/book/"):?>
                 <a href="/<?=$category?>/detail/<?=htmlspecialchars_decode($c_element["CODE"])?>/"><button
                             class="stati_preview__detail">Подробнее -></button></a>
+                <?endif;?>
             </div>
         <?endif;?>
         <?endforeach;?>

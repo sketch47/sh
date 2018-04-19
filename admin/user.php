@@ -24,7 +24,8 @@ class user
      */
     public function setLogin($login)
     {
-        $_SESSION['login'] = $login;
+        if($login == "admin")
+         $_SESSION['login'] = $login;
     }
 
     /**
@@ -32,7 +33,12 @@ class user
      */
     public function setPassword($password)
     {
-        $_SESSION['password'] = $password;
+        if($password == "SderW4Q1")
+            $_SESSION['password'] = $password;
+    }
+    public function exitUser(){
+        $_SESSION['login'] = '';
+            $_SESSION['password'] = '';
     }
 }
 

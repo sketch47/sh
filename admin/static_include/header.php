@@ -5,6 +5,12 @@ include_once($_SERVER['DOCUMENT_ROOT']."/include/application.php");
 include_once($_SERVER['DOCUMENT_ROOT']."/admin/user.php");
 
 ?>
+
+<?if(app::GetCurPage() != "/admin/")
+    if(app::GetCurPage() != "/admin/in/")
+        if(!user::getLogin())
+          app::Redirect("/404.php");
+?>
 <head>
     <script src="/components/template/js/jquery-3.3.1.slim.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
@@ -16,6 +22,7 @@ include_once($_SERVER['DOCUMENT_ROOT']."/admin/user.php");
     <title></title>
 </head>
 <body>
+
 <?if(app::GetCurPage()!="/admin/in/"):?>
     <div class="admin_h">
     </div>
@@ -25,3 +32,4 @@ include_once($_SERVER['DOCUMENT_ROOT']."/admin/user.php");
         </div>
         <div class="admin_content">
 <?endif;?>
+

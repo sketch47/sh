@@ -1,12 +1,11 @@
 <?include_once($_SERVER['DOCUMENT_ROOT']."/admin/static_include/header.php");?>
 
 <?app::addStyle('/admin/list/style.css'); ?>
-
-
     <select class="page_select">
         <option value="all">Все</option>
         <option value="stati">Статьи</option>
         <option value="news">Новости</option>
+        <option value="book">Учебные пособия</option>
     </select>
 
 <?
@@ -24,6 +23,7 @@ else
 
 ?>
 <button class="btn" id="addPages">Создать страницу</button>
+<?if($arResult):?>
 <div class="page-list">
     <div class="page-list_items">
             <table class="page-list_items__element">
@@ -55,6 +55,7 @@ else
     </div>
 
 </div>
+<?endif;?>
 <?include_once($_SERVER['DOCUMENT_ROOT'] . "/admin/static_include/footer.php");?>
 <script>
     $('select').change(function () {

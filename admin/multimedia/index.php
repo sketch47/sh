@@ -2,7 +2,6 @@
 echo "<link rel='stylesheet' href='/admin/multimedia/style.css'>";
 
 app::title("Галлерея");
-
 if(isset($_POST['update_submit']))
 {
 
